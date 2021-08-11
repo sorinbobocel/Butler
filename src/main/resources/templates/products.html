@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+
+<body> 
+
+<h2>Lista de produse</h2>
+<table class="table table-striped" border="1">
+    <thead class="thead-dark">
+    <tr>
+        <th>Nume produs</th>
+        <th>Cantitate in stoc</th>
+        <th>Pret unitar</th>
+        <th>Actiuni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <div th:if="${not #lists.isEmpty(productList)}">
+        <tr th:each="productInfoDTO : ${productList}">
+            <td th:text="${productInfoDTO.name}">Product name</td>
+            <td th:text="${productInfoDTO.stockQuantity}">Stock quantity</td>
+            <td th:text="${productInfoDTO.unitPrice}">Unit price</td>
+            <td>
+                <a th:href="@{'/updateForm/' + ${productInfoDTO.name}}">Editeaza produs</a>
+            </td>
+        </tr>
+    </tbody>
+    </div>
+</table>
+
+</body>
+</html>
